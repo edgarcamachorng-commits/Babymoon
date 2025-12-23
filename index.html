@@ -817,7 +817,12 @@
                         <div class="countdown-number" id="baby-arrival-minutes">00</div>
                         <div class="countdown-label">Minutos</div>
                     </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="baby-arrival-seconds">00</div>
+                        <div class="countdown-label">Segundos</div>
+                    </div>
                 </div>
+            </div>
             </div>
         </div>
         
@@ -1327,22 +1332,26 @@
                 document.querySelector('.countdown-box:first-child .countdown-subtitle').textContent = "Disfrutando nuestro baby moon";
             }
         }
-        
+
         function updateBabyArrivalCountdown() {
             const now = new Date();
             const timeDifference = babyArrivalDate - now;
-            
+    
             if (timeDifference > 0) {
                 const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-                
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        
                 document.getElementById('baby-arrival-days').textContent = days.toString().padStart(2, '0');
                 document.getElementById('baby-arrival-hours').textContent = hours.toString().padStart(2, '0');
                 document.getElementById('baby-arrival-minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('baby-arrival-seconds').textContent = seconds.toString().padStart(2, '0');
             } else {
                 document.querySelector('.countdown-box:last-child .countdown-title').textContent = "¡Nuestro bebé está aquí!";
                 document.querySelector('.countdown-box:last-child .countdown-subtitle').textContent = "La mayor aventura ha comenzado";
+                // También limpiar los segundos cuando llegue el momento
+                document.getElementById('baby-arrival-seconds').textContent = "00";
             }
         }
         
@@ -1399,5 +1408,6 @@
 </body>
 
 </html>
+
 
 
